@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="celadon">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>主题预览</title>
+<link rel="stylesheet" href="themes.css">
+<style>
+  .page { max-width: 1120px; margin: 0 auto; padding: var(--space-6) var(--gutter) var(--space-7); }
+
+  /* 顶部 */
+  .top { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: flex-end; justify-content: space-between; margin-bottom: var(--space-6); }
+  .date { display: flex; align-items: center; gap: var(--space-3); }
+  .date-big { font-family: var(--font-display); font-weight: var(--display-weight, 700); font-size: var(--text-xl); line-height: 1.1; }
+  .greet { margin: var(--space-1) 0 0; color: var(--fg-muted); }
+  .toolbar { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+  .themes { display: flex; flex-wrap: wrap; gap: 2px; padding: 2px; background: var(--surface-2); border-radius: var(--radius-md); }
+  .themes button { border: 0; background: transparent; padding: 6px 12px; border-radius: calc(var(--radius-md) - 2px); color: var(--fg-muted); cursor: pointer; font-size: var(--text-sm); min-height: 32px; }
+  .themes button[aria-pressed="true"] { background: var(--surface); color: var(--fg); box-shadow: var(--shadow); font-weight: 600; }
+  .icon-btn { display: inline-grid; place-items: center; width: 36px; height: 36px; border: 1px solid var(--border); background: var(--surface); border-radius: var(--radius-md); cursor: pointer; color: var(--fg-muted); }
+  .icon-btn:hover { color: var(--fg); border-color: var(--border-strong); }
+
+  /* 网格：主区 + 辅区 */
+  .grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-5); align-items: start; }
+  .col-main { grid-column: span 8; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-5); min-width: 0; }
+  .col-side { grid-column: span 4; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-6); min-width: 0; }
+  @media (max-width: 860px) { .grid { grid-template-columns: minmax(0, 1fr); } .col-main, .col-side { grid-column: auto; } }
+
+  .panel { background: var(--surface); border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: var(--space-5); }
+  html[data-theme="ledger"] .panel, html[data-theme="studio"] .panel { box-shadow: none; border: 1px solid var(--border); }
+  .plain h2 { padding-bottom: var(--space-2); border-bottom: 1px solid var(--border); }
+  h2 { font-size: var(--text-lg); margin-bottom: var(--space-4); }
+  .head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); margin-bottom: var(--space-4); }
+  .head h2 { margin: 0; }
+  .meta { color: var(--fg-muted); font-size: var(--text-sm); }
+
+  /* 待办 */
+  .add { display: flex; gap: var(--space-2); margin-bottom: var(--space-3); }
+  .add input { flex: 1; width: 0; min-width: 0; padding: 8px 12px; border: 1px solid var(--border-strong); border-radius: var(--radius-md); background: var(--bg); }
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: var(--radius-md); border: 0; background: var(--primary); color: var(--on-primary); cursor: pointer; font-weight: 600; white-space: nowrap; }
+  .btn:hover { filter: brightness(1.08); }
+  .todos { list-style: none; margin: 0; padding: 0; }
+  .todo { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) 0; border-top: 1px solid var(--border); }
+  .todo:first-child { border-top: 0; }
+  .todo label { flex: 1; min-width: 0; display: flex; align-items: center; gap: var(--space-3); cursor: pointer; }
+  .todo input { width: 18px; height: 18px; margin: 0; flex: none; }
+  .todo .txt { overflow-wrap: anywhere; transition: color var(--dur) var(--ease-out); }
+  .todo input:checked + .txt { color: var(--fg-subtle); text-decoration: line-through; }
+  .todo time { color: var(--fg-muted); font-size: var(--text-sm); }
+  .focus-btn { display: none; }
+
+  /* 笔记、链接 */
+  .notes textarea { width: 100%; box-sizing: border-box; min-height: 84px; resize: vertical; padding: var(--space-3); border: 1px solid var(--border-strong); border-radius: var(--radius-md); background: var(--bg); line-height: var(--leading-body); }
+  .note-list { list-style: none; margin: var(--space-3) 0 0; padding: 0; color: var(--fg-muted); font-size: var(--text-sm); }
+  .note-list li { padding: var(--space-2) 0; border-top: 1px solid var(--border); }
+  .links { list-style: none; margin: 0; padding: 0; }
+  .links a { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) 0; color: var(--fg); text-decoration: none; }
+  .links a:hover { color: var(--primary); }
+  .links .icon { color: var(--fg-muted); }
+
+  /* ---------- 各主题标志细节：默认全部隐藏 ---------- */
+  .sig { display: none; }
+
+  /* 青瓷：日期大字 + 朱砂印 */
+  html[data-theme="celadon"] .date-big { font-size: var(--text-3xl); }
+  html[data-theme="celadon"] .sig-seal { display: inline-grid; place-items: center; width: 28px; height: 28px; background: var(--accent); color: var(--on-accent); border-radius: var(--radius-sm); font-family: var(--font-song); font-size: var(--text-sm); font-weight: 700; }
+
+  /* 导视：线路标 */
+  html[data-theme="wayfinding"] .sig-lines { display: block; }
+  html[data-theme="wayfinding"] .todo .dot { display: inline-block; }
+  .dot { display: none; width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  .lines { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+  .lines li { display: flex; align-items: center; gap: var(--space-3); }
+  .badge { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: var(--radius-sm); color: #FFFFFF; font-weight: 800; font-size: var(--text-sm); flex: none; }
+  html[data-mode="dark"] .badge { color: var(--bg); }
+  @media (prefers-color-scheme: dark) { html:not([data-mode="light"]) .badge { color: var(--bg); } }
+  .lines .count { margin-left: auto; }
+
+  /* 对账：收支表 */
+  html[data-theme="ledger"] .sig-ledger { display: block; }
+  table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+  th, td { padding: var(--space-2) 0; border-bottom: 1px solid var(--border); text-align: left; }
+  th { color: var(--fg-muted); font-weight: 500; }
+  .amt { text-align: right; font-family: var(--font-num, inherit); font-variant-numeric: tabular-nums; }
+  .neg { color: var(--negative, var(--danger)); }
+  tfoot td { border-bottom: 0; border-top: 2px solid var(--fg); font-weight: 700; }
+
+  /* 夜读：专注模式 */
+  html[data-theme="nightdesk"] .focus-btn { display: inline-grid; }
+  .focus-layer { position: fixed; inset: 0; background: var(--dim, transparent); display: none; place-items: center; z-index: 50; padding: var(--gutter); }
+  .focus-layer.on { display: grid; animation: fade var(--dur) var(--ease-out); }
+  .focus-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-6); text-align: center; max-width: 420px; width: 100%; box-shadow: var(--shadow); }
+  .focus-card .timer { font-family: var(--font-mono); font-size: var(--text-3xl); font-variant-numeric: tabular-nums; margin: var(--space-3) 0 var(--space-5); color: var(--accent); }
+  @keyframes fade { from { opacity: 0; } }
+
+  /* 庭院：家庭成员 */
+  html[data-theme="courtyard"] .sig-family { display: block; }
+  html[data-theme="courtyard"] .todo .ava { display: inline-grid; }
+  .ava { display: none; place-items: center; width: 26px; height: 26px; border-radius: 50%; color: #FFFFFF; font-size: var(--text-xs); font-weight: 700; flex: none; }
+  html[data-mode="dark"] .ava { color: var(--bg); }
+  @media (prefers-color-scheme: dark) { html:not([data-mode="light"]) .ava { color: var(--bg); } }
+  .members { display: flex; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-4); }
+  .members span { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--fg-muted); font-size: var(--text-sm); }
+  .week { list-style: none; margin: 0; padding: 0; }
+  .week li { display: flex; gap: var(--space-3); align-items: center; padding: var(--space-2) 0; border-top: 1px solid var(--border); }
+  .week b { width: 3em; font-weight: 600; color: var(--fg-muted); font-size: var(--text-sm); }
+
+  /* 画室：今天最重要的一件事 */
+  html[data-theme="studio"] .sig-hero { display: block; margin-bottom: var(--space-7); }
+  .sig-hero p { margin: 0 0 var(--space-2); color: var(--fg-muted); }
+  .sig-hero h1 { font-size: var(--text-3xl); color: var(--primary); letter-spacing: -0.02em; outline: none; }
+  .sig-hero h1:focus-visible { box-shadow: 0 2px 0 var(--accent); }
+  @media (max-width: 640px) { .sig-hero h1, html[data-theme="celadon"] .date-big { font-size: var(--text-2xl); } }
+
+  .note { margin-top: var(--space-7); color: var(--fg-muted); font-size: var(--text-sm); }
+</style>
+</head>
+<body>
+<svg style="display:none" aria-hidden="true">
+<symbol id="i-folder" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" /></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /> <rect x="2" y="4" width="20" height="16" rx="2" /></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" /></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14" /> <path d="M12 5v14" /></symbol>
+<symbol id="i-receipt" viewBox="0 0 24 24"><path d="M12 17V7" /> <path d="M16 8h-6a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8" /> <path d="M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z" /></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" /> <path d="M12 2v2" /> <path d="M12 20v2" /> <path d="m4.93 4.93 1.41 1.41" /> <path d="m17.66 17.66 1.41 1.41" /> <path d="M2 12h2" /> <path d="M20 12h2" /> <path d="m6.34 17.66-1.41 1.41" /> <path d="m19.07 4.93-1.41 1.41" /></symbol>
+<symbol id="i-timer" viewBox="0 0 24 24"><line x1="10" x2="14" y1="2" y2="2" /> <line x1="12" x2="15" y1="14" y2="11" /> <circle cx="12" cy="14" r="8" /></symbol>
+</svg>
+<div class="page">
+  <header class="top">
+    <div>
+      <div class="date"><span class="date-big">10月12日</span><span class="sig sig-seal" aria-label="今天">今</span></div>
+      <p class="greet">周一，晚上好，林晓。今天还剩 3 件事。</p>
+    </div>
+    <div class="toolbar">
+      <div class="themes" role="group" aria-label="选择主题">
+        <button data-t="celadon">青瓷</button>
+        <button data-t="wayfinding">导视</button>
+        <button data-t="ledger">对账</button>
+        <button data-t="nightdesk">夜读</button>
+        <button data-t="courtyard">庭院</button>
+        <button data-t="studio">画室</button>
+      </div>
+      <button class="icon-btn" id="mode" aria-label="切换浅色或深色" title="切换浅色或深色">
+        <svg class="icon" aria-hidden="true"><use href="#i-moon"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <section class="sig sig-hero">
+    <p>今天最重要的一件事</p>
+    <h1 contenteditable="true" spellcheck="false">把青禾书店的海报定稿发出去</h1>
+  </section>
+
+  <div class="grid">
+    <div class="col-main">
+      <section class="panel">
+        <div class="head"><h2>今天要做的事</h2><span class="meta">完成 1 / 4</span></div>
+        <form class="add" onsubmit="return false">
+          <input aria-label="新的待办" placeholder="写下一件要做的事，按回车添加">
+          <button class="btn" type="submit"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-plus"/></svg>添加待办</button>
+        </form>
+        <ul class="todos">
+          <li class="todo">
+            <label><input type="checkbox"><span class="dot" style="background:var(--line-1)"></span><span class="ava" style="background:var(--member-1)">晓</span><span class="txt">青禾书店海报：改第二版配色</span></label>
+            <time>14:00</time>
+            <button class="icon-btn focus-btn" aria-label="专注做这件事" title="专注做这件事"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-timer"/></svg></button>
+          </li>
+          <li class="todo">
+            <label><input type="checkbox" checked><span class="dot" style="background:var(--line-2)"></span><span class="ava" style="background:var(--member-2)">远</span><span class="txt">回复周老师关于课件的邮件</span></label>
+            <time>10:30</time>
+            <button class="icon-btn focus-btn" aria-label="专注做这件事" title="专注做这件事"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-timer"/></svg></button>
+          </li>
+          <li class="todo">
+            <label><input type="checkbox"><span class="dot" style="background:var(--line-3)"></span><span class="ava" style="background:var(--member-3)">果</span><span class="txt">整理本周发票，交给财务</span></label>
+            <time>17:00</time>
+            <button class="icon-btn focus-btn" aria-label="专注做这件事" title="专注做这件事"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-timer"/></svg></button>
+          </li>
+          <li class="todo">
+            <label><input type="checkbox"><span class="dot" style="background:var(--line-1)"></span><span class="ava" style="background:var(--member-1)">晓</span><span class="txt">给 Momo 订周六的疫苗</span></label>
+            <time>今晚</time>
+            <button class="icon-btn focus-btn" aria-label="专注做这件事" title="专注做这件事"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-timer"/></svg></button>
+          </li>
+        </ul>
+      </section>
+
+      <section class="panel sig sig-ledger">
+        <div class="head"><h2>本月收支</h2><span class="meta">截至 10 月 12 日</span></div>
+        <table>
+          <thead><tr><th>项目</th><th>日期</th><th class="amt">金额（元）</th></tr></thead>
+          <tbody>
+            <tr><td>青禾书店海报尾款</td><td class="num">10-09</td><td class="amt">8,500.00</td></tr>
+            <tr><td>字体授权</td><td class="num">10-07</td><td class="amt neg">-1,280.00</td></tr>
+            <tr><td>工作室房租</td><td class="num">10-01</td><td class="amt neg">-3,600.00</td></tr>
+            <tr><td>周老师课件设计</td><td class="num">10-01</td><td class="amt">4,200.00</td></tr>
+          </tbody>
+          <tfoot><tr><td>结余</td><td></td><td class="amt">7,820.00</td></tr></tfoot>
+        </table>
+      </section>
+
+      <section class="panel sig sig-family">
+        <div class="head"><h2>这周家里的事</h2></div>
+        <div class="members">
+          <span><span class="ava" style="display:inline-grid;background:var(--member-1)">晓</span>林晓</span>
+          <span><span class="ava" style="display:inline-grid;background:var(--member-2)">远</span>陈远</span>
+          <span><span class="ava" style="display:inline-grid;background:var(--member-3)">果</span>果果</span>
+        </div>
+        <ul class="week">
+          <li><b>周三</b><span class="ava" style="display:inline-grid;background:var(--member-3)">果</span>果果钢琴课 16:30，陈远接</li>
+          <li><b>周五</b><span class="ava" style="display:inline-grid;background:var(--member-2)">远</span>交物业费</li>
+          <li><b>周六</b><span class="ava" style="display:inline-grid;background:var(--member-1)">晓</span>带 Momo 打疫苗</li>
+        </ul>
+      </section>
+    </div>
+
+    <aside class="col-side">
+      <section class="panel sig sig-lines">
+        <div class="head"><h2>进行中的项目</h2></div>
+        <ul class="lines">
+          <li><span class="badge" style="background:var(--line-1)">青</span>青禾书店海报<span class="count meta">2 件</span></li>
+          <li><span class="badge" style="background:var(--line-2)">周</span>周老师课件<span class="count meta">1 件</span></li>
+          <li><span class="badge" style="background:var(--line-3)">账</span>报销和发票<span class="count meta">1 件</span></li>
+        </ul>
+      </section>
+
+      <section class="notes plain">
+        <h2>随手记</h2>
+        <textarea aria-label="随手记" placeholder="想到什么先记下来"></textarea>
+        <ul class="note-list">
+          <li>海报主标题试试竖排</li>
+          <li>周老师说课件下周四前就行</li>
+        </ul>
+      </section>
+
+      <section class="plain">
+        <h2>常用网站</h2>
+        <ul class="links">
+          <li><a href="#"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>工作邮箱</a></li>
+          <li><a href="#"><svg class="icon" aria-hidden="true"><use href="#i-folder"/></svg>项目网盘</a></li>
+          <li><a href="#"><svg class="icon" aria-hidden="true"><use href="#i-receipt"/></svg>电子发票</a></li>
+        </ul>
+      </section>
+    </aside>
+  </div>
+
+  <p class="note">这是主题预览，内容是示例。每个主题的标志细节只在该主题下出现。字体用的是系统字体，未加载网络字体。</p>
+</div>
+
+<div class="focus-layer" id="focus" role="dialog" aria-modal="true" aria-label="专注模式">
+  <div class="focus-card">
+    <p class="meta">正在专注</p>
+    <h2 id="focus-title" style="margin:0"></h2>
+    <div class="timer" id="timer">25:00</div>
+    <button class="btn" id="focus-exit">结束专注</button>
+  </div>
+</div>
+
+<script>
+  const html = document.documentElement;
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
+  const btns = document.querySelectorAll('.themes button');
+  function setTheme(t) {
+    html.dataset.theme = t;
+    btns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.t === t)));
+    store.set('wb-theme', t);
+  }
+  btns.forEach(b => b.addEventListener('click', () => setTheme(b.dataset.t)));
+  const params = new URLSearchParams(location.search);
+  setTheme(params.get('theme') || store.get('wb-theme') || 'celadon');
+
+  const modeBtn = document.getElementById('mode');
+  function isDark() {
+    if (html.dataset.mode) return html.dataset.mode === 'dark';
+    return matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function paintModeIcon() { modeBtn.querySelector('use').setAttribute('href', isDark() ? '#i-sun' : '#i-moon'); }
+  const savedMode = params.get('mode') || store.get('wb-mode');
+  if (savedMode) html.dataset.mode = savedMode;
+  paintModeIcon();
+  modeBtn.addEventListener('click', () => {
+    html.dataset.mode = isDark() ? 'light' : 'dark';
+    store.set('wb-mode', html.dataset.mode);
+    paintModeIcon();
+  });
+
+  // 夜读：专注模式
+  const layer = document.getElementById('focus');
+  let tick = null;
+  function stopFocus() { layer.classList.remove('on'); clearInterval(tick); }
+  document.querySelectorAll('.focus-btn').forEach(b => b.addEventListener('click', () => {
+    document.getElementById('focus-title').textContent = b.closest('.todo').querySelector('.txt').textContent;
+    let left = 25 * 60;
+    const out = document.getElementById('timer');
+    const show = () => { out.textContent = String(Math.floor(left / 60)).padStart(2, '0') + ':' + String(left % 60).padStart(2, '0'); };
+    show(); clearInterval(tick);
+    tick = setInterval(() => { left = Math.max(0, left - 1); show(); }, 1000);
+    layer.classList.add('on');
+    document.getElementById('focus-exit').focus();
+  }));
+  document.getElementById('focus-exit').addEventListener('click', stopFocus);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') stopFocus(); });
+
+  // 待办计数
+  const todos = document.querySelectorAll('.todo input');
+  const meta = document.querySelector('.col-main .meta');
+  function count() { meta.textContent = '完成 ' + [...todos].filter(i => i.checked).length + ' / ' + todos.length; }
+  todos.forEach(i => i.addEventListener('change', count));
+</script>
+</body>
+</html>

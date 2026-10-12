@@ -1,0 +1,358 @@
+/*
+ * 工作台主题库
+ * 用法：<html data-theme="celadon">，可选 data-mode="light" | "dark"（不写则跟随系统）
+ * 组件里只用下面的变量，不写裸色值。各主题的说明见 references/themes.md
+ * 配色变量结构参考 ui-ux-pro-max（MIT），主题为本 skill 原创。
+ */
+
+/* ---------- 字体栈：系统字体优先，网络字体可选（见 themes.md 第 3 节） ---------- */
+:root {
+  --font-hei:  "PingFang SC", "HarmonyOS Sans SC", "MiSans", "Microsoft YaHei UI", "Microsoft YaHei",
+               "Noto Sans SC", "Noto Sans CJK SC", "Source Han Sans SC", system-ui, sans-serif;
+  --font-song: "Noto Serif SC", "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "STSong", "SimSun", serif;
+  --font-kai:  "LXGW WenKai Screen", "LXGW WenKai", "Kaiti SC", "STKaiti", "KaiTi", serif;
+  --font-mono: "SF Mono", "JetBrains Mono", "Cascadia Mono", "Consolas", "Menlo", monospace;
+
+  /* 字号阶梯（整页最多用 5 级） */
+  --text-xs: 0.75rem;   /* 12 */
+  --text-sm: 0.875rem;  /* 14 */
+  --text-md: 1rem;      /* 16 正文 */
+  --text-lg: 1.25rem;   /* 20 */
+  --text-xl: 1.625rem;  /* 26 */
+  --text-2xl: 2.25rem;  /* 36 */
+  --text-3xl: 3rem;     /* 48 仅用于主题的标志性大字 */
+  --leading-body: 1.7;
+  --leading-tight: 1.3;
+
+  /* 间距（乘以主题密度） */
+  --density: 1;
+  --space-1: calc(4px * var(--density));
+  --space-2: calc(8px * var(--density));
+  --space-3: calc(12px * var(--density));
+  --space-4: calc(16px * var(--density));
+  --space-5: calc(24px * var(--density));
+  --space-6: calc(32px * var(--density));
+  --space-7: calc(48px * var(--density));
+  --gutter: 16px; /* 手机左右边距，不随密度变化 */
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 200ms;
+  --icon-size: 20px;
+  --icon-stroke: 1.75;
+}
+
+/* ---------- 标签色默认值（项目线路色、家庭成员色），各主题可覆盖 ---------- */
+html {
+  --line-1: #C2410C; --line-2: #1864AB; --line-3: #2A7E3A; --line-4: #A61E4D; --line-5: #5F3DC4; --line-6: #0B7285;
+  --member-1: #C2410C; --member-2: #1864AB; --member-3: #2A7E3A; --member-4: #A61E4D; --member-5: #5F3DC4; --member-6: #0B7285;
+}
+html[data-mode="dark"] {
+  --line-1: #FF9F6E; --line-2: #74B3F0; --line-3: #74C98E; --line-4: #F088AC; --line-5: #B39DF5; --line-6: #5CC9D6;
+  --member-1: #FF9F6E; --member-2: #74B3F0; --member-3: #74C98E; --member-4: #F088AC; --member-5: #B39DF5; --member-6: #5CC9D6;
+}
+@media (prefers-color-scheme: dark) {
+  html:not([data-mode="light"]) {
+    --line-1: #FF9F6E; --line-2: #74B3F0; --line-3: #74C98E; --line-4: #F088AC; --line-5: #B39DF5; --line-6: #5CC9D6;
+    --member-1: #FF9F6E; --member-2: #74B3F0; --member-3: #74C98E; --member-4: #F088AC; --member-5: #B39DF5; --member-6: #5CC9D6;
+  }
+}
+
+/* ============================================================
+ * 1. 青瓷 celadon：安静、以文字为主（写作、教师、研究、学生）
+ *    标志细节：今日日期用宋体大字，旁边一枚朱砂小印“今”
+ * ============================================================ */
+html[data-theme="celadon"] {
+  --font-display: var(--font-song);
+  --font-body: var(--font-hei);
+  --radius-sm: 4px; --radius-md: 6px; --radius-lg: 10px;
+  --density: 1.1;
+  --bg: #EDF1EE; --surface: #F8FAF8; --surface-2: #E1E9E4;
+  --fg: #1E2925; --fg-muted: #4A5953; --fg-subtle: #5F6D67;
+  --border: #CAD5CF; --border-strong: #7D948A;
+  --primary: #2C6655; --on-primary: #FFFFFF; --primary-soft: #D3E5DC;
+  --accent: #A8352A; --on-accent: #FFFFFF;
+  --success: #2F7A4B; --warning: #8A5A00; --danger: #B3261E;
+  --ring: #2C6655; --selection: #CFE3D8;
+  --shadow: 0 1px 2px rgba(30, 41, 37, 0.06), 0 4px 12px rgba(30, 41, 37, 0.05);
+}
+html[data-theme="celadon"][data-mode="dark"] {
+  --bg: #131A18; --surface: #1A2320; --surface-2: #22302B;
+  --fg: #E1E8E4; --fg-muted: #A7B5AE; --fg-subtle: #8F9E97;
+  --border: #2E3C37; --border-strong: #5B7169;
+  --primary: #7DBDA7; --on-primary: #0C1714; --primary-soft: #23413A;
+  --accent: #E58376; --on-accent: #1A0F0D;
+  --success: #74C493; --warning: #E0B45C; --danger: #F28B82;
+  --ring: #7DBDA7; --selection: #2B4A41;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* ============================================================
+ * 2. 导视 wayfinding：多线并行、一眼识别（项目经理、运营、自由职业多客户）
+ *    标志细节：每个项目一种“线路色”，项目名前一枚线路标
+ * ============================================================ */
+html[data-theme="wayfinding"] {
+  --font-display: var(--font-hei);
+  --font-body: var(--font-hei);
+  --display-weight: 800;
+  --radius-sm: 4px; --radius-md: 8px; --radius-lg: 12px;
+  --density: 1;
+  --bg: #F4F5F7; --surface: #FFFFFF; --surface-2: #E9ECEF;
+  --fg: #14181D; --fg-muted: #474F59; --fg-subtle: #5B636D;
+  --border: #D7DCE1; --border-strong: #8893A0;
+  --primary: #0050AA; --on-primary: #FFFFFF; --primary-soft: #DCE8F7;
+  --accent: #F2B705; --on-accent: #14181D;
+  --success: #00804F; --warning: #9A5B00; --danger: #C8102E;
+  --ring: #0050AA; --selection: #CFE0F5;
+  --line-1: #C8102E; --line-2: #0050AA; --line-3: #00804F;
+  --line-4: #B35A00; --line-5: #6B3FA0; --line-6: #00838F;
+  --shadow: 0 1px 2px rgba(20, 24, 29, 0.08);
+}
+html[data-theme="wayfinding"][data-mode="dark"] {
+  --bg: #0F1317; --surface: #171C21; --surface-2: #20262D;
+  --fg: #E8ECF0; --fg-muted: #A4AEB8; --fg-subtle: #8B96A1;
+  --border: #29313A; --border-strong: #5B6979;
+  --primary: #5AA2FF; --on-primary: #071425; --primary-soft: #16304F;
+  --accent: #F2B705; --on-accent: #14181D;
+  --success: #3CC48A; --warning: #F0A93B; --danger: #FF6B7D;
+  --ring: #5AA2FF; --selection: #1D3A5E;
+  --line-1: #FF6B7D; --line-2: #5AA2FF; --line-3: #3CC48A;
+  --line-4: #FF9F43; --line-5: #B48CF0; --line-6: #3CC7D3;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================================
+ * 3. 对账 ledger：数字多、要对得齐（财务、销售、电商、记账）
+ *    标志细节：数字一律等宽右对齐带千分位，负数用“红字”
+ * ============================================================ */
+html[data-theme="ledger"] {
+  --font-display: var(--font-hei);
+  --font-body: var(--font-hei);
+  --font-num: var(--font-mono);
+  --display-weight: 600;
+  --radius-sm: 2px; --radius-md: 4px; --radius-lg: 6px;
+  --density: 0.85;
+  --bg: #F1F3F1; --surface: #FFFFFF; --surface-2: #E7EAE7;
+  --fg: #191C1A; --fg-muted: #4C534F; --fg-subtle: #5E6561;
+  --border: #D2D7D3; --border-strong: #8C9690;
+  --primary: #1C5A42; --on-primary: #FFFFFF; --primary-soft: #D7E8DF;
+  --accent: #1C5A42; --on-accent: #FFFFFF;
+  --success: #1C5A42; --warning: #8F5B00; --danger: #B42318;
+  --negative: #B42318; --positive: #191C1A;
+  --ring: #1C5A42; --selection: #D7E8DF;
+  --shadow: none;
+}
+html[data-theme="ledger"][data-mode="dark"] {
+  --bg: #111412; --surface: #181C19; --surface-2: #202521;
+  --fg: #E3E7E4; --fg-muted: #A1AAA5; --fg-subtle: #89938D;
+  --border: #2A302C; --border-strong: #5E6B63;
+  --primary: #6DBE96; --on-primary: #08150F; --primary-soft: #1D3A2D;
+  --accent: #6DBE96; --on-accent: #08150F;
+  --success: #6DBE96; --warning: #E3B04B; --danger: #F27D72;
+  --negative: #F27D72; --positive: #E3E7E4;
+  --ring: #6DBE96; --selection: #244536;
+  --shadow: none;
+}
+
+/* ============================================================
+ * 4. 夜读 nightdesk：深色优先、低刺激（程序员、设计师、夜间工作者、学生）
+ *    标志细节：专注模式，选中一条待办后其余区域整体调暗，只留它和计时
+ * ============================================================ */
+html[data-theme="nightdesk"] {
+  --font-display: var(--font-hei);
+  --font-body: var(--font-hei);
+  --display-weight: 600;
+  --radius-sm: 6px; --radius-md: 8px; --radius-lg: 12px;
+  --density: 1;
+  --bg: #EFF0F3; --surface: #FFFFFF; --surface-2: #E4E6EB;
+  --fg: #1A1E26; --fg-muted: #4D5466; --fg-subtle: #5D6476;
+  --border: #D5D8E0; --border-strong: #8A92A5;
+  --primary: #2D5884; --on-primary: #FFFFFF; --primary-soft: #DCE6F1;
+  --accent: #8C5E0B; --on-accent: #FFFFFF;
+  --success: #2E7D4F; --warning: #8C5E0B; --danger: #B3261E;
+  --ring: #2D5884; --selection: #D3E0EE;
+  --shadow: 0 1px 2px rgba(26, 30, 38, 0.06), 0 4px 14px rgba(26, 30, 38, 0.06);
+  --dim: rgba(239, 240, 243, 0.72);
+}
+html[data-theme="nightdesk"][data-mode="dark"] {
+  --bg: #16191F; --surface: #1D2129; --surface-2: #252A34;
+  --fg: #E6E3DB; --fg-muted: #A8ACB7; --fg-subtle: #9095A1;
+  --border: #303644; --border-strong: #626C83;
+  --primary: #8DB3D8; --on-primary: #0E141C; --primary-soft: #23324A;
+  --accent: #E2B465; --on-accent: #1B1408;
+  --success: #82C49A; --warning: #E2B465; --danger: #F08A80;
+  --ring: #8DB3D8; --selection: #2C3D57;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 20px rgba(0, 0, 0, 0.3);
+  --dim: rgba(22, 25, 31, 0.78);
+}
+
+/* ============================================================
+ * 5. 庭院 courtyard：生活和家庭（宝妈宝爸、家庭事务、个人生活管理）
+ *    标志细节：每个家庭成员一种颜色，日程和家务按人着色，头像是名字首字
+ * ============================================================ */
+html[data-theme="courtyard"] {
+  --font-display: var(--font-kai);
+  --font-body: var(--font-hei);
+  --display-weight: 700;
+  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 18px;
+  --density: 1.05;
+  --bg: #F1F5F8; --surface: #FFFFFF; --surface-2: #E5ECF1;
+  --fg: #1C2631; --fg-muted: #4A5766; --fg-subtle: #5A6776;
+  --border: #D4DDE5; --border-strong: #8294A7;
+  --primary: #B8410C; --on-primary: #FFFFFF; --primary-soft: #FBE3D6;
+  --accent: #2F7D4A; --on-accent: #FFFFFF;
+  --success: #2F7D4A; --warning: #8F5D00; --danger: #B3261E;
+  --ring: #B8410C; --selection: #FBE3D6;
+  --member-1: #C2410C; --member-2: #1864AB; --member-3: #2A7E3A;
+  --member-4: #A61E4D; --member-5: #5F3DC4; --member-6: #0B7285;
+  --shadow: 0 2px 6px rgba(28, 38, 49, 0.06), 0 10px 24px rgba(28, 38, 49, 0.05);
+}
+html[data-theme="courtyard"][data-mode="dark"] {
+  --bg: #141A20; --surface: #1B232B; --surface-2: #242E38;
+  --fg: #E7ECF0; --fg-muted: #A9B5C1; --fg-subtle: #919EAB;
+  --border: #2D3843; --border-strong: #5D6F81;
+  --primary: #FF9F6E; --on-primary: #2A1205; --primary-soft: #4A2716;
+  --accent: #74C98E; --on-accent: #0B1A10;
+  --success: #74C98E; --warning: #EDB65A; --danger: #F28B82;
+  --ring: #FF9F6E; --selection: #4A2E20;
+  --member-1: #FF9F6E; --member-2: #74B3F0; --member-3: #74C98E;
+  --member-4: #F088AC; --member-5: #B39DF5; --member-6: #5CC9D6;
+  --shadow: 0 2px 6px rgba(0, 0, 0, 0.35), 0 10px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================================
+ * 6. 画室 studio：留白多、只有一处大胆（设计师、内容创作者、自媒体）
+ *    标志细节：首屏一句超大字号的“今天最重要的一件事”，用克莱因蓝
+ * ============================================================ */
+html[data-theme="studio"] {
+  --font-display: var(--font-hei);
+  --font-body: var(--font-hei);
+  --display-weight: 900;
+  --radius-sm: 0px; --radius-md: 2px; --radius-lg: 4px;
+  --density: 1.2;
+  --bg: #FAFAF9; --surface: #FFFFFF; --surface-2: #F0F0EE;
+  --fg: #16181D; --fg-muted: #50555F; --fg-subtle: #60656F;
+  --border: #E1E2E5; --border-strong: #8E939D;
+  --primary: #002FA7; --on-primary: #FFFFFF; --primary-soft: #DFE6F8;
+  --accent: #FFC93C; --on-accent: #16181D;
+  --success: #1E7A46; --warning: #8F5D00; --danger: #C0262D;
+  --ring: #002FA7; --selection: #FFE9A8;
+  --shadow: none;
+}
+html[data-theme="studio"][data-mode="dark"] {
+  --bg: #0E1322; --surface: #151B2E; --surface-2: #1D2540;
+  --fg: #EDEEF2; --fg-muted: #A8AEC0; --fg-subtle: #9097AB;
+  --border: #262F4D; --border-strong: #57669A;
+  --primary: #93A9FF; --on-primary: #0A1030; --primary-soft: #222E5C;
+  --accent: #FFC93C; --on-accent: #16181D;
+  --success: #6CCB93; --warning: #FFC93C; --danger: #FF8A8F;
+  --ring: #93A9FF; --selection: #3A3410;
+  --shadow: none;
+}
+
+/* ---------- 跟随系统深色（data-mode 未指定时） ---------- */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="celadon"]:not([data-mode="light"]) {
+    --bg: #131A18; --surface: #1A2320; --surface-2: #22302B;
+    --fg: #E1E8E4; --fg-muted: #A7B5AE; --fg-subtle: #8F9E97;
+    --border: #2E3C37; --border-strong: #5B7169;
+    --primary: #7DBDA7; --on-primary: #0C1714; --primary-soft: #23413A;
+    --accent: #E58376; --on-accent: #1A0F0D;
+    --success: #74C493; --warning: #E0B45C; --danger: #F28B82;
+    --ring: #7DBDA7; --selection: #2B4A41;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 16px rgba(0, 0, 0, 0.25);
+  }
+  html[data-theme="wayfinding"]:not([data-mode="light"]) {
+    --bg: #0F1317; --surface: #171C21; --surface-2: #20262D;
+    --fg: #E8ECF0; --fg-muted: #A4AEB8; --fg-subtle: #8B96A1;
+    --border: #29313A; --border-strong: #5B6979;
+    --primary: #5AA2FF; --on-primary: #071425; --primary-soft: #16304F;
+    --accent: #F2B705; --on-accent: #14181D;
+    --success: #3CC48A; --warning: #F0A93B; --danger: #FF6B7D;
+    --ring: #5AA2FF; --selection: #1D3A5E;
+    --line-1: #FF6B7D; --line-2: #5AA2FF; --line-3: #3CC48A;
+    --line-4: #FF9F43; --line-5: #B48CF0; --line-6: #3CC7D3;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+  html[data-theme="ledger"]:not([data-mode="light"]) {
+    --bg: #111412; --surface: #181C19; --surface-2: #202521;
+    --fg: #E3E7E4; --fg-muted: #A1AAA5; --fg-subtle: #89938D;
+    --border: #2A302C; --border-strong: #5E6B63;
+    --primary: #6DBE96; --on-primary: #08150F; --primary-soft: #1D3A2D;
+    --accent: #6DBE96; --on-accent: #08150F;
+    --success: #6DBE96; --warning: #E3B04B; --danger: #F27D72;
+    --negative: #F27D72; --positive: #E3E7E4;
+    --ring: #6DBE96; --selection: #244536;
+  }
+  html[data-theme="nightdesk"]:not([data-mode="light"]) {
+    --bg: #16191F; --surface: #1D2129; --surface-2: #252A34;
+    --fg: #E6E3DB; --fg-muted: #A8ACB7; --fg-subtle: #9095A1;
+    --border: #303644; --border-strong: #626C83;
+    --primary: #8DB3D8; --on-primary: #0E141C; --primary-soft: #23324A;
+    --accent: #E2B465; --on-accent: #1B1408;
+    --success: #82C49A; --warning: #E2B465; --danger: #F08A80;
+    --ring: #8DB3D8; --selection: #2C3D57;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 20px rgba(0, 0, 0, 0.3);
+    --dim: rgba(22, 25, 31, 0.78);
+  }
+  html[data-theme="courtyard"]:not([data-mode="light"]) {
+    --bg: #141A20; --surface: #1B232B; --surface-2: #242E38;
+    --fg: #E7ECF0; --fg-muted: #A9B5C1; --fg-subtle: #919EAB;
+    --border: #2D3843; --border-strong: #5D6F81;
+    --primary: #FF9F6E; --on-primary: #2A1205; --primary-soft: #4A2716;
+    --accent: #74C98E; --on-accent: #0B1A10;
+    --success: #74C98E; --warning: #EDB65A; --danger: #F28B82;
+    --ring: #FF9F6E; --selection: #4A2E20;
+    --member-1: #FF9F6E; --member-2: #74B3F0; --member-3: #74C98E;
+    --member-4: #F088AC; --member-5: #B39DF5; --member-6: #5CC9D6;
+    --shadow: 0 2px 6px rgba(0, 0, 0, 0.35), 0 10px 24px rgba(0, 0, 0, 0.3);
+  }
+  html[data-theme="studio"]:not([data-mode="light"]) {
+    --bg: #0E1322; --surface: #151B2E; --surface-2: #1D2540;
+    --fg: #EDEEF2; --fg-muted: #A8AEC0; --fg-subtle: #9097AB;
+    --border: #262F4D; --border-strong: #57669A;
+    --primary: #93A9FF; --on-primary: #0A1030; --primary-soft: #222E5C;
+    --accent: #FFC93C; --on-accent: #16181D;
+    --success: #6CCB93; --warning: #FFC93C; --danger: #FF8A8F;
+    --ring: #93A9FF; --selection: #3A3410;
+  }
+}
+
+/* ---------- 基础层：浏览器自带的部分也要跟主题走 ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { color-scheme: light; -webkit-text-size-adjust: 100%; }
+html[data-mode="dark"] { color-scheme: dark; }
+@media (prefers-color-scheme: dark) { html:not([data-mode="light"]) { color-scheme: dark; } }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: var(--leading-body);
+  text-autospace: normal;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight, 700);
+  line-height: var(--leading-tight);
+  text-wrap: balance;
+  margin: 0;
+}
+::selection { background: var(--selection); color: var(--fg); }
+input, textarea, select, button { font: inherit; color: inherit; caret-color: var(--primary); }
+:where(input[type="checkbox"], input[type="radio"], input[type="range"], progress) { accent-color: var(--primary); }
+:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: var(--radius-sm); }
+a { color: var(--primary); text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+::placeholder { color: var(--fg-subtle); opacity: 1; }
+* { scrollbar-color: var(--border-strong) transparent; scrollbar-width: thin; }
+.num, time, td, .tabular { font-variant-numeric: tabular-nums; }
+.icon { width: var(--icon-size); height: var(--icon-size); flex: none;
+  fill: none; stroke: currentColor; stroke-width: var(--icon-stroke); stroke-linecap: round; stroke-linejoin: round; }
+.icon-sm { --icon-size: 16px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
