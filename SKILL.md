@@ -13,11 +13,12 @@ description: 通过一问一答，为不熟悉 AI 的用户生成一个个人工
 |---|---|
 | `references/interview.md` | 开始问答前必读：怎么问、问什么、按身份怎么搭配 |
 | `references/modules.md` | 写配置前必读：每个模块的用途和配置写法 |
-| `references/themes.md` | 推荐主题前必读：六套主题适合谁 |
+| `references/themes.md` | 推荐主题前必读：6 套通用主题和 5 套行业主题适合谁 |
 | `references/checklist.md` | 生成后自检时读 |
 | `references/design.md` | 只在用户提出模板以外的视觉调整时读 |
 | `references/icons.md` | 给常用网站选图标时读清单部分 |
 | `assets/workbench.html` | 工作台模板，复制后只改其中的配置 JSON |
+| `examples/*.json` | 五个行业的完整配置，写配置前看一个最接近的 |
 
 ## 先判断是哪种请求
 
@@ -40,7 +41,7 @@ description: 通过一问一答，为不熟悉 AI 的用户生成一个个人工
 读 `references/modules.md`，把问答结果写成配置 JSON：
 
 - `id` 用用户称呼的拼音加年份，例如 `wang-teacher-2026`。
-- 模块 4 到 7 个；主模块排在最前面并放主区（见 `interview.md` 第 5 节）。
+- 模块 4 到 7 个；主模块排在最前面并放主区（见 `interview.md` 第 5 节）。用了行业主题时，主区第一个是对应样式的 `hero`（主视觉）。
 - 所有初始内容都用用户说过的真实信息。用户没提供的，留空让他自己填，**不要编造**待办、金额、网址或日期。
 - 写 1 到 3 条贴合用户工作的 AI 指令（`prompts`），这是帮他开始用 AI 的关键。
 - 日期按今天的实际日期推算，例如“下周三”要换算成具体的 `YYYY-MM-DD`。

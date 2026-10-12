@@ -21,10 +21,10 @@
 - 来源：https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
 - 许可证：MIT（`LICENSES/ui-ux-pro-max-MIT.txt`）
 - 使用方式：`assets/themes.css` 的颜色变量结构参考了其配色数据的字段划分；`references/checklist.md` 中部分交互、无障碍条目参考了其 UX 规范数据。
-- 修改说明：未复制其配色数值和风格数据；六套主题的配色、字体和标志细节为本 skill 原创。
+- 修改说明：未复制其配色数值和风格数据；全部 11 套主题的配色、字体、标志细节和立体主视觉为本 skill 原创。
 
 ## Lucide
 
 - 来源：https://lucide.dev
 - 许可证：ISC（`LICENSES/lucide-ISC.txt`）
-- 使用方式：`assets/icons.svg` 收录了其中 69 个图标的原始路径，打包为 SVG symbol，未修改图形。
+- 使用方式：`assets/icons.svg` 收录了其中 70 个图标的原始路径，打包为 SVG symbol，未修改图形。

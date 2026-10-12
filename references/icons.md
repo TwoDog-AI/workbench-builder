@@ -1,6 +1,6 @@
 # 图标
 
-工作台只用 `assets/icons.svg` 里的图标。它们来自 Lucide（ISC 协议），已经挑好了工作台常用的 69 个，不需要联网加载。
+工作台只用 `assets/icons.svg` 里的图标。它们来自 Lucide（ISC 协议），已经挑好了工作台常用的 70 个，不需要联网加载。
 
 ## 用法
 
@@ -39,6 +39,7 @@
 | id | 用途 |
 |---|---|
 | `i-plus` | 添加 |
+| `i-minus` | 减少 |
 | `i-check` | 完成、勾选 |
 | `i-circle-check` | 已完成状态 |
 | `i-square` | 未勾选的待办 |

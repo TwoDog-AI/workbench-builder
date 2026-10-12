@@ -1,0 +1,9 @@
+{"id":"zhouyan-arch-2026","owner":"周砚","title":"周砚的工作台","theme":"blueprint","mode":"light","layout":"grid",
+"modules":[
+ {"type":"hero","style":"tower","area":"main","projects":[
+   {"name":"滨江社区图书馆","at":3,"phases":[{"name":"概念设计","date":"03.12"},{"name":"方案设计","date":"05.30"},{"name":"扩初设计","date":"08.15"},{"name":"施工图","date":"10.31"},{"name":"招标配合","date":"12 月"},{"name":"施工配合","date":"2027"}]},
+   {"name":"青石巷民宿改造","at":1,"phases":[{"name":"概念设计"},{"name":"方案设计","date":"10.25"},{"name":"施工图"},{"name":"施工配合"}]}]},
+ {"type":"today","area":"side","title":"今天","items":[{"text":"回复结构工程师关于二层悬挑的问题","time":"09:30","done":true},{"text":"核对三层楼梯间防火门的洞口尺寸"},{"text":"甲方汇报：立面材料两个方案","time":"14:00"}]},
+ {"type":"countdown","area":"side","title":"节点","items":[{"name":"施工图第二次送审","date":"2026-10-16"},{"name":"消防专项评审","date":"2026-10-14"}]},
+ {"type":"notes","area":"side","title":"审图意见","items":[{"text":"A-07 北立面窗墙比 0.46，需调到 0.40 以下","at":"2026-10-11"}]}
+]}

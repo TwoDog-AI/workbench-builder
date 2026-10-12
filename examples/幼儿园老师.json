@@ -1,0 +1,8 @@
+{"id":"lin-kg-2026","owner":"林老师","title":"小树班的一天","theme":"playroom","mode":"light","layout":"grid",
+"modules":[
+ {"type":"hero","style":"blocks","area":"main","title":"今天搭了 {n} 块积木"},
+ {"type":"today","area":"main","title":"今天的一日流程","items":[{"text":"晨检，量体温","short":"晨检","time":"08:00","done":true},{"text":"早操和户外活动","short":"早操","time":"09:00","done":true},{"text":"主题课：秋天的树叶","short":"上课","time":"10:00","done":true},{"text":"午餐，记一下挑食的孩子","short":"午餐","time":"11:30","done":true},{"text":"午睡巡查","short":"午睡","time":"12:30","done":true},{"text":"区角游戏：建构区","short":"区角","time":"15:00"},{"text":"给乐乐妈妈回电话","short":"回电","time":"16:00"},{"text":"离园，核对接送卡","short":"离园","time":"16:30"}]},
+ {"type":"notes","area":"side","title":"要回的家长消息","items":[{"text":"乐乐妈妈：孩子说下午摔了一跤，严重吗？","at":"2026-10-12"}]},
+ {"type":"countdown","area":"side","items":[{"name":"秋季亲子运动会","date":"2026-10-24"}]},
+ {"type":"reading","area":"side","title":"这周要讲的绘本","items":[{"title":"落叶跳舞","status":"在看"},{"title":"树真好","status":"想看"}]}
+]}

@@ -1,0 +1,11 @@
+{"id":"shanye-shop-2026","owner":"陈姐","title":"山野茶铺","theme":"depot","mode":"light","layout":"grid",
+"modules":[
+ {"type":"hero","style":"parcels","area":"main","title":"今天的包裹","bays":[
+  {"name":"待打包","kind":"open","count":6,"hint":"先打包下午 4 点前要揽收的。","orders":[{"who":"李女士","item":"正山小种 125g × 2","city":"上海","amt":"¥236"},{"who":"周先生","item":"白毫银针礼盒","city":"杭州","amt":"¥398"}]},
+  {"name":"待揽收","kind":"taped","count":9,"hint":"顺丰 16:00 上门。"},
+  {"name":"已发出","kind":"sent","count":12,"hint":"有 1 单派送异常，记得跟一下。"}]},
+ {"type":"today","area":"side","items":[{"text":"回复 6 条询单"},{"text":"给新到的白毫银针拍主图","time":"15:00"}]},
+ {"type":"ledger","area":"side","items":[{"date":"2026-10-12","text":"今日回款","amount":4860},{"date":"2026-10-11","text":"包材进货","amount":-320}]},
+ {"type":"countdown","area":"side","items":[{"name":"双十一预售","date":"2026-10-20"}]},
+ {"type":"prompts","area":"side","items":[{"name":"写商品标题","text":"请帮我写 5 个淘宝商品标题，每个不超过 30 字。商品：[商品名和卖点]"}]}
+]}

@@ -317,6 +317,217 @@ html[data-theme="studio"][data-mode="dark"] {
   }
 }
 
+/* ============================================================
+ * 以下 5 套是“行业主题”，各配一个立体主视觉（见 references/themes.md 第 2 节）
+ * ============================================================ */
+
+/* 7. 晒图 blueprint：建筑、室内、工程、产品设计
+ *    主视觉：等轴测楼体，一层一个阶段 */
+html[data-theme="blueprint"] {
+  --font-display: var(--font-hei);
+  --font-body: var(--font-hei);
+  --font-num: "Barlow Condensed", "Bahnschrift", "DIN Alternate", "Arial Narrow", var(--font-hei);
+  --display-weight: 900;
+  --radius-sm: 1px; --radius-md: 2px; --radius-lg: 2px;
+  --density: 1;
+  --bg: #E7EAE8; --surface: #F2F4F3; --surface-2: #DCE1DE;
+  --fg: #1D2B3A; --fg-muted: #4F5A66; --fg-subtle: #5B6672;
+  --border: #C6CDD3; --border-strong: #7F8B97;
+  --primary: #1F4E8C; --on-primary: #FFFFFF; --primary-soft: #D3DEEC;
+  --accent: #B8322A; --on-accent: #FFFFFF;
+  --success: #1F6B45; --warning: #8A5A00; --danger: #B8322A;
+  --ring: #B8322A; --selection: #CFDCEC;
+  --shadow: none;
+  --hero-bg: #F2F4F3; --hero-line: #1D2B3A;
+}
+html[data-theme="blueprint"][data-mode="dark"] {
+  --bg: #0F1722; --surface: #152131; --surface-2: #1C2B3E;
+  --fg: #E2E8EF; --fg-muted: #A4B2C2; --fg-subtle: #8D9CAD;
+  --border: #253549; --border-strong: #5A6E86;
+  --primary: #7EA8E3; --on-primary: #0A1624; --primary-soft: #1E3552;
+  --accent: #F2877C; --on-accent: #1C0B09;
+  --success: #6CC495; --warning: #E7B45A; --danger: #F2877C;
+  --ring: #F2877C; --selection: #24405F;
+  --hero-bg: #132030; --hero-line: #A4B2C2;
+}
+
+/* 8. 夜场 vinyl：音乐人、播客、主播、DJ、演出行业
+ *    主视觉：旋转黑胶，A 面上午，B 面下午 */
+html[data-theme="vinyl"] {
+  --font-display: var(--font-song);
+  --font-body: var(--font-hei);
+  --font-latin: "Instrument Serif", "Didot", "Bodoni 72", Georgia, serif;
+  --font-num: "DM Mono", var(--font-mono);
+  --display-weight: 900;
+  --radius-sm: 4px; --radius-md: 999px; --radius-lg: 14px;
+  --density: 1.05;
+  --bg: #F3ECE8; --surface: #FBF7F4; --surface-2: #E9DEDA;
+  --fg: #2A1416; --fg-muted: #5E4A4C; --fg-subtle: #6E5A5C;
+  --border: #DCCBC6; --border-strong: #9D8580;
+  --primary: #8A4F06; --on-primary: #FFFFFF; --primary-soft: #F2DEC4;
+  --accent: #A8342A; --on-accent: #FFFFFF;
+  --success: #2F7A4B; --warning: #8A4F06; --danger: #A8342A;
+  --ring: #8A4F06; --selection: #F2DEC4;
+  --shadow: 0 2px 10px rgba(42, 20, 22, 0.06);
+  --hero-bg: transparent; --label-a: #E9A23B; --label-b: #E07A6E;
+}
+html[data-theme="vinyl"][data-mode="dark"] {
+  --bg: #1E0E10; --surface: #2B1518; --surface-2: #3A2124;
+  --fg: #F2E8DC; --fg-muted: #C2A9A0; --fg-subtle: #AE958E;
+  --border: #4A2C30; --border-strong: #8A6A6D;
+  --primary: #E9A23B; --on-primary: #1E0E10; --primary-soft: #4A2E1A;
+  --accent: #E07A6E; --on-accent: #1E0E10;
+  --success: #82C49A; --warning: #E9A23B; --danger: #F08A80;
+  --ring: #E9A23B; --selection: #5A3420;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+/* 9. 案头 chamber：律师、法务、咨询、财务顾问、审计
+ *    主视觉：一叠立体卷宗，点一份抽出来 */
+html[data-theme="chamber"] {
+  --font-display: var(--font-song);
+  --font-body: var(--font-hei);
+  --font-num: "Source Serif 4", "Iowan Old Style", Georgia, var(--font-song);
+  --display-weight: 900;
+  --radius-sm: 2px; --radius-md: 4px; --radius-lg: 6px;
+  --density: 1.05;
+  --bg: #ECEEEA; --surface: #FFFFFF; --surface-2: #E1E5DF;
+  --fg: #17261F; --fg-muted: #4A5750; --fg-subtle: #5A665F;
+  --border: #CDD3CC; --border-strong: #7E8A82;
+  --primary: #22473A; --on-primary: #FFFFFF; --primary-soft: #D5E2DA;
+  --accent: #7A5A12; --on-accent: #FFFFFF;
+  --success: #22473A; --warning: #7A5A12; --danger: #A8342A;
+  --ring: #7A5A12; --selection: #E8DFC8;
+  --shadow: 0 1px 2px rgba(23, 38, 31, 0.06);
+  --hero-bg: #1B2E25; --folder: #E3D8BF; --folder-tab: #D3C6A6; --folder-on: #F1E9D6; --folder-ink: #26231D;
+}
+html[data-theme="chamber"][data-mode="dark"] {
+  --bg: #15241D; --surface: #1C2F26; --surface-2: #243A30;
+  --fg: #ECE6D8; --fg-muted: #A9B5AC; --fg-subtle: #94A198;
+  --border: #2F4A3D; --border-strong: #5F7A6C;
+  --primary: #C9A45C; --on-primary: #15241D; --primary-soft: #3A3A26;
+  --accent: #C9A45C; --on-accent: #15241D;
+  --success: #8CC7A2; --warning: #C9A45C; --danger: #F0A097;
+  --ring: #C9A45C; --selection: #3F4A30;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  --hero-bg: #12201A;
+}
+
+/* 10. 积木 playroom：幼教、小学老师、早教、亲子、托育
+ *     主视觉：积木塔，做完一件事掉下一块 */
+html[data-theme="playroom"] {
+  --font-display: "ZCOOL KuaiLe", "Yuanti SC", "YouYuan", var(--font-hei);
+  --font-body: var(--font-hei);
+  --font-num: "Fredoka", "Arial Rounded MT Bold", var(--font-hei);
+  --display-weight: 400;
+  --radius-sm: 9px; --radius-md: 16px; --radius-lg: 28px;
+  --density: 1.05;
+  --bg: #EEF3F7; --surface: #FFFFFF; --surface-2: #E3ECF3;
+  --fg: #1F2A44; --fg-muted: #4A5672; --fg-subtle: #5A6682;
+  --border: #D5DEE8; --border-strong: #8090A8;
+  --primary: #2D5BD0; --on-primary: #FFFFFF; --primary-soft: #DCE6FB;
+  --accent: #C2412B; --on-accent: #FFFFFF;
+  --success: #2F7D4A; --warning: #8F5D00; --danger: #B3261E;
+  --ring: #2D5BD0; --selection: #DCE6FB;
+  --shadow: none;
+  --hero-bg: #FFFFFF;
+  --block-1: #E4573D; --block-2: #2D5BD0; --block-3: #F2B632; --block-4: #3E9B5F;
+}
+html[data-theme="playroom"][data-mode="dark"] {
+  --bg: #141A2A; --surface: #1C2438; --surface-2: #252F47;
+  --fg: #E8ECF6; --fg-muted: #AEB8D0; --fg-subtle: #97A2BC;
+  --border: #2C3752; --border-strong: #64739A;
+  --primary: #8FB0FF; --on-primary: #0D1528; --primary-soft: #253A6A;
+  --accent: #FF8A73; --on-accent: #2A0E08;
+  --success: #74C98E; --warning: #EDB65A; --danger: #F28B82;
+  --ring: #8FB0FF; --selection: #2B3F6E;
+  --hero-bg: #1C2438;
+}
+
+/* 11. 货仓 depot：电商、网店、外卖、小商户、仓储物流
+ *     主视觉：包裹货架，按发货状态堆放 */
+html[data-theme="depot"] {
+  --font-display: var(--font-hei);
+  --font-body: var(--font-hei);
+  --font-num: "Bricolage Grotesque", "DIN Alternate", "Bahnschrift", var(--font-hei);
+  --display-weight: 900;
+  --radius-sm: 6px; --radius-md: 999px; --radius-lg: 24px;
+  --density: 1;
+  --bg: #E9E7E2; --surface: #F7F6F3; --surface-2: #DEDAD2;
+  --fg: #1C1D21; --fg-muted: #4E4F55; --fg-subtle: #5C5D63;
+  --border: #D5D2CB; --border-strong: #85827A;
+  --primary: #B23A0A; --on-primary: #FFFFFF; --primary-soft: #F8DCCB;
+  --accent: #1C1D21; --on-accent: #FFFFFF;
+  --success: #2B7A44; --warning: #8F5D00; --danger: #B42318;
+  --ring: #1C1D21; --selection: #F8DCCB;
+  --shadow: none;
+  --hero-bg: #F7F6F3; --shelf-on: #F2541B; --shelf-on-edge: #C2410C; --shelf: #D9D5CD; --shelf-edge: #B9B4AA;
+}
+html[data-theme="depot"][data-mode="dark"] {
+  --bg: #17181B; --surface: #202226; --surface-2: #2A2C31;
+  --fg: #F0EEEA; --fg-muted: #B4B2AC; --fg-subtle: #9E9C96;
+  --border: #33353B; --border-strong: #6A6C73;
+  --primary: #FF8A4C; --on-primary: #1E0D04; --primary-soft: #4A2A18;
+  --accent: #F0EEEA; --on-accent: #17181B;
+  --success: #6CC48A; --warning: #EDB65A; --danger: #F28B82;
+  --ring: #FF8A4C; --selection: #4A2A18;
+  --hero-bg: #202226; --shelf: #3A3C42; --shelf-edge: #55575E;
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme="blueprint"]:not([data-mode="light"]) {
+    --bg: #0F1722; --surface: #152131; --surface-2: #1C2B3E;
+    --fg: #E2E8EF; --fg-muted: #A4B2C2; --fg-subtle: #8D9CAD;
+    --border: #253549; --border-strong: #5A6E86;
+    --primary: #7EA8E3; --on-primary: #0A1624; --primary-soft: #1E3552;
+    --accent: #F2877C; --on-accent: #1C0B09;
+    --success: #6CC495; --warning: #E7B45A; --danger: #F2877C;
+    --ring: #F2877C; --selection: #24405F;
+    --hero-bg: #132030; --hero-line: #A4B2C2;
+  }
+  html[data-theme="vinyl"]:not([data-mode="light"]) {
+    --bg: #1E0E10; --surface: #2B1518; --surface-2: #3A2124;
+    --fg: #F2E8DC; --fg-muted: #C2A9A0; --fg-subtle: #AE958E;
+    --border: #4A2C30; --border-strong: #8A6A6D;
+    --primary: #E9A23B; --on-primary: #1E0E10; --primary-soft: #4A2E1A;
+    --accent: #E07A6E; --on-accent: #1E0E10;
+    --success: #82C49A; --warning: #E9A23B; --danger: #F08A80;
+    --ring: #E9A23B; --selection: #5A3420;
+    --shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+  }
+  html[data-theme="chamber"]:not([data-mode="light"]) {
+    --bg: #15241D; --surface: #1C2F26; --surface-2: #243A30;
+    --fg: #ECE6D8; --fg-muted: #A9B5AC; --fg-subtle: #94A198;
+    --border: #2F4A3D; --border-strong: #5F7A6C;
+    --primary: #C9A45C; --on-primary: #15241D; --primary-soft: #3A3A26;
+    --accent: #C9A45C; --on-accent: #15241D;
+    --success: #8CC7A2; --warning: #C9A45C; --danger: #F0A097;
+    --ring: #C9A45C; --selection: #3F4A30;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    --hero-bg: #12201A;
+  }
+  html[data-theme="playroom"]:not([data-mode="light"]) {
+    --bg: #141A2A; --surface: #1C2438; --surface-2: #252F47;
+    --fg: #E8ECF6; --fg-muted: #AEB8D0; --fg-subtle: #97A2BC;
+    --border: #2C3752; --border-strong: #64739A;
+    --primary: #8FB0FF; --on-primary: #0D1528; --primary-soft: #253A6A;
+    --accent: #FF8A73; --on-accent: #2A0E08;
+    --success: #74C98E; --warning: #EDB65A; --danger: #F28B82;
+    --ring: #8FB0FF; --selection: #2B3F6E;
+    --hero-bg: #1C2438;
+  }
+  html[data-theme="depot"]:not([data-mode="light"]) {
+    --bg: #17181B; --surface: #202226; --surface-2: #2A2C31;
+    --fg: #F0EEEA; --fg-muted: #B4B2AC; --fg-subtle: #9E9C96;
+    --border: #33353B; --border-strong: #6A6C73;
+    --primary: #FF8A4C; --on-primary: #1E0D04; --primary-soft: #4A2A18;
+    --accent: #F0EEEA; --on-accent: #17181B;
+    --success: #6CC48A; --warning: #EDB65A; --danger: #F28B82;
+    --ring: #FF8A4C; --selection: #4A2A18;
+    --hero-bg: #202226; --shelf: #3A3C42; --shelf-edge: #55575E;
+  }
+}
+
 /* ---------- 基础层：浏览器自带的部分也要跟主题走 ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 html { color-scheme: light; -webkit-text-size-adjust: 100%; }

@@ -86,16 +86,29 @@
 
 用户没给出足够信息时，用这里的默认值补齐。推荐主题的第一个是默认。
 
+先看用户的行业能不能对上一个行业主题，对得上就把它放在推荐的第一个，并配上它的主视觉：
+
+| 行业 | 推荐主题 | 默认布局 | 默认模块（按显示顺序） |
+|---|---|---|---|
+| 建筑、室内、工程、装修 | 晒图、导视 | grid | hero（tower）、today（side）、countdown（节点）、notes（审图意见） |
+| 音乐人、主播、演出、讲师 | 夜场、夜读 | grid | hero（vinyl）、today、countdown（演出）、ledger、notes（灵感） |
+| 律师、法务、咨询、财务顾问 | 案头、对账 | grid | hero（dossier）、today（side）、countdown（期限）、timer 或 ledger |
+| 幼教、小学老师、早教 | 积木、庭院 | grid | hero（blocks）、today（一日流程，带 short）、notes（家长消息）、countdown、reading（绘本） |
+| 电商、网店、外卖、小商户 | 货仓、对账 | grid | hero（parcels）、today（side）、ledger、countdown（大促）、prompts |
+
+对不上时用通用主题：
+
 | 身份 | 推荐主题 | 默认布局 | 默认模块（按显示顺序） |
 |---|---|---|---|
 | 办公室上班族 | 导视、夜读 | grid | today、schedule、projects（有多个项目时）、notes、links、prompts |
-| 老师 | 青瓷、庭院 | grid | today、schedule（课表，每周重复）、countdown、prompts（评语、出题）、notes、links |
-| 学生 | 青瓷、夜读 | grid | today、schedule（课表）、countdown（考试）、habits、reading |
-| 开店、做生意 | 对账、导视 | grid | today、ledger、countdown（大促）、prompts（商品文案、回复客户）、links |
+| 老师（中学及以上） | 青瓷、庭院 | grid | today、schedule（课表，每周重复）、countdown、prompts（评语、出题）、notes、links |
+| 学生 | 积木、青瓷 | grid | hero（blocks）、today、schedule（课表）、countdown（考试）、reading |
 | 自由职业 | 导视、画室 | grid | today、projects、ledger、notes、prompts、links |
-| 照顾家庭 | 庭院、青瓷 | grid | today（按成员）、schedule（按成员）、habits、countdown、notes |
+| 照顾家庭 | 庭院、积木 | grid | today（按成员）、schedule（按成员）、habits、countdown、notes |
 | 程序员、技术人员 | 夜读、导视 | sidebar | today（开启专注）、projects、goals、reading、links |
 | 设计师、内容创作者 | 画室、夜读 | single | onething、today、notes（灵感）、prompts、links |
+
+`examples/` 文件夹里有五个行业主题的完整配置和生成好的页面，写配置前可以先看一个最接近的。
 
 ## 5. 痛点和主模块
 

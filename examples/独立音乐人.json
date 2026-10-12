@@ -1,0 +1,8 @@
+{"id":"alan-music-2026","owner":"阿岚","title":"阿岚的工作台","theme":"vinyl","mode":"dark","layout":"grid",
+"modules":[
+ {"type":"hero","style":"vinyl","area":"main","title":"今天这张唱片"},
+ {"type":"today","area":"main","title":"今天要做的事","items":[{"text":"《雾港》第二段编曲，补一轨大提琴","time":"10:00","done":true},{"text":"给鼓手发 demo，确认排练曲目","time":"11:30","done":true},{"text":"录音棚补录《潮汐》人声","time":"15:00","done":true},{"text":"Livehouse 试音","time":"18:30"},{"text":"正式演出，压轴《雾港》","time":"21:00"}]},
+ {"type":"countdown","area":"side","title":"秋季巡演","items":[{"name":"杭州 MAO Livehouse","date":"2026-10-18"},{"name":"上海 育音堂","date":"2026-10-25"}]},
+ {"type":"ledger","area":"side","title":"这个月的进账","items":[{"date":"2026-10-08","text":"流媒体分成","amount":2316.4},{"date":"2026-10-10","text":"排练房租金","amount":-800}]},
+ {"type":"notes","area":"side","title":"哼出来的灵感","items":[{"text":"副歌最后一句升调试试","at":"2026-10-11"}]}
+]}
